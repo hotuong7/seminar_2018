@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Pete's Pet Shop</title>
+
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="container">
+      <div class="row">
+        
+        <div class="col-xs-12 col-sm-8 col-sm-push-2">
+          <h1 class="text-center">Sàn Giao Dịch Bất Động Sản</h1>
+          <hr/>
+        
+          <div id="loader">
+<!--             <img src="/img/indeterminate_loader_blur2.gif"> -->
+            <p class="text-center" id="text-load">Loading...</p>
+          </div>
+          <div id="content" style="display:none;">
+            <div class="block">
+              <div>
+                  <!-- Nav tabs -->
+                  <ul class="nav nav-tabs" role="tablist">
+                    <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Xem thông tin bất động sản</a></li>
+                    <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Tạo thông tin bất động sản</a></li>
+                    <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">Kiểm tra thông tin bất động sản</a></li>
+                   
+                  </ul>
+
+                  <!-- Tab panes -->
+                  <div class="tab-content">
+                    <div role="tabpanel" class="tab-pane active" id="home">
+                    
+                      <div id="saleList">
+                        <div class="block">
+                          <div class="icon-home"><img src="/img/1.png"/></div>
+                          <div class="content-tab-content">
+                              <div class="rows">
+                                <span class="title_">Chủ sở hữu:</span> <span class="content_">Hồ Chí Tưởng</span>
+                            </div>
+                            <div class="rows">
+                                <span class="title_">Ngày tạo:</span> <span>27/11/2018</span>
+                            </div><div class="rows">
+                                <span class="title_">CODE:</span> <span>xhsZJDJkdsuk9ewdnZXnfekduaefn</span>
+                            </div>
+                          </div>
+                        </div>
+                     </div>
+
+                    </div>
+                    <div role="tabpanel" class="tab-pane" id="profile">
+                      <hr>
+                       <form onSubmit="App.addSale(); return false;">
+                          <div class="form-group">
+                            <label for="name">Chủ sở hữu</label>
+                            <input class="form-control" id="name" pattern="[^ @]*@[^ @]*" placeholder="Email chủ sở hữu" title="Vui lòng nhập đúng định dạng email" required>
+                          </div>
+                           <div class="form-group">
+                            <label for="phone">Điện thoại</label>
+                            <input class="form-control" id="phone" type="tel" step="1" min="1" placeholder="Điện thoại" pattern="[0-9]{10}" title="Vui lòng nhập đúng số điện thoại (bao gồm 10 chữ số)" required>
+                          </div>
+                          <div class="form-group">
+                            <label for="category">Chọn loại</label>
+                            <select class="form-control" id="category" title="Vui lòng chọn loại bất động sản" required>
+                              <option value>---Select---</option>
+                              <option value="cap1">Nhà Cấp 1</option>
+                              <option value="cap2">Nhà Cấp 2</option>
+                              <option value="cap3">Nhà Cấp 3</option>
+                              <option value="cap4">Nhà Cấp 4</option>
+                              <option value="cap5">Nhà Cấp 5</option>
+                            </select>
+                          </div>
+                          
+                         <div class="form-group">
+                            <label for="price">Gía(đồng)</label>
+                            <input class="form-control"  id="price" type="number" pattern="" placeholder="Giá" required>
+                          </div>
+                          <div class="form-group">
+                            <label for="discription">Mô tả</label>
+                            <input class="form-control" id="discription" type="text" step="1" min="1" placeholder="Mô tả">
+                          </div>
+                           <div class="form-group">
+                            <label for="created_at">Ngày tạo</label>
+                            <input class="form-control date" id="created_at" type="text" placeholder="Ngày tạo" required>
+                          </div>
+                          <div style="text-align: center;">
+                            <button type="submit" class="btn btn-success">Tạo</button>
+                          </div>
+                          <hr />
+                        </form>
+                    </div>
+                    <div role="tabpanel" class="tab-pane" id="messages">
+                      <hr>
+                      <form onSubmit="App.search(); return false;">
+                        <div class="search">
+                          <input type="text" name="search" id="search" value="" placeholder="Nhập mã Vertify...">
+                          <hr>
+                          <div style="text-align: center;">
+                           <input type="submit" name="submit" class="btn btn-success" id="submit_search" value="Vertify">
+                          </div>
+                        </div>
+                      </form>
+                        <div id="saleVertify">
+                         
+                        </div>
+                        <hr>
+                         <p class="notify-fail alert alert-danger" style="display: none;"></p>
+                           <p class="notify-success alert alert-success" style="display: none;"></p>
+                    </div>
+                   
+                  </div>
+
+                </div>
+            </div>
+
+            <hr />
+            <p id="accountAddress" class="text-center"></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/web3.min.js"></script>
+    <script src="js/truffle-contract.js"></script>
+<!-- 
+<script src="https://unpkg.com/ipfs-api@9.0.0/dist/index.js"
+integrity="sha384-5bXRcW9kyxxnSMbOoHzraqa7Z0PQWIao+cgeg327zit1hz5LZCEbIMx/LWKPReuB"
+crossorigin="anonymous"></script> -->
+<script type="text/javascript" src="/jquery-ui-1.12.0/jquery-ui.min.js"></script>
+<link rel="stylesheet" type="text/css" href="/jquery-ui-1.12.0/jquery-ui.min.css"/>
+<script src="https://unpkg.com/ipfs-api/dist/index.js"></script>
+    <script src="js/app.js"></script>
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('#myTabs a').click(function (e) {
+          e.preventDefault()
+          $(this).tab('show')
+        });
+
+
+        $('#myTabs a[href="#profile"]').tab('show'); // Select tab by name
+        $('#myTabs a:first').tab('show'); // Select first tab
+        $('#myTabs a:last').tab('show'); // Select last tab
+        $('#myTabs li:eq(2) a').tab('show'); // Select third tab (0-indexed)
+      });
+      $('#someTab').tab('show');
+      $( '.date' ).datepicker({ dateFormat: "dd/mm/yy" });
+    </script>
+  </body>
+</html>
+<style type="text/css">
+#search{
+  width: 100%;
+}
+#text-load{
+  margin-top: 30%;
+}
+#loader{
+  opacity: 0.7;
+  position: fixed;
+  left: 0px;
+  top: 0px;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+  content: 'Đang lưu...';
+  background: url('/img/indeterminate_loader_blur2.gif') 50% 50% no-repeat rgb(249,249,249);
+}
+#loader img{
+  margin-top: 10%;
+}
+  body{
+
+    background-color: #2860907a;
+  }
+  .container{
+    /*height: 1000px;*/
+    background-color: #fff;
+  }
+  .block{ 
+        background-color: #3c763d52;
+        margin-top: 3%; 
+        margin-bottom: 3%;
+        border: 1px solid #ccc;
+        padding: 2%;
+        border-radius: 5px;
+  }
+  .block .icon-home{
+    margin-left: 10%;
+    width: 30%;
+    float: left;
+  }
+  .block img{
+    width: 30%;
+  }
+  .title_{
+        font-style: italic;
+    font-weight: bold;
+  }
+  .form-control{
+    width: 70%;
+    float: right;
+    margin-right: 5%;
+  }
+  .label-control{
+    width: 70%;
+    margin-left: 5%;
+  }
+</style>
